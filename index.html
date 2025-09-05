@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lift Distribution Calculator</title>
+    <link rel="stylesheet" href="style/calculadora.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.1/math.min.js"></script>
+    <script src="https://kit.fontawesome.com/3f10fc879c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="icono.ico" type="image/x-icon">
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">DDD</a></li>
+                <li><a href="index.html">Lift Distribution</a></li>
+                <li><a href="foilAnalizer.html">Airfoil Analyzer</a></li>
+                <li><a href="neural.html">Evolutive Optimization</a></li>
+                <li><a href="modal.html">Modal Analysis</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">
+        <div class="container">
+            <div class="gui_panel">
+                <div class="botones_calcular">
+                    <div class="archivo">
+                        <label for="fileInput" id="CSVfile"><i class="fa-solid fa-upload"></i> CSV Airfoil File</label>
+                        <input type="file" id="fileInput" accept=".csv">
+                    </div>
+                    <div class="calculo">
+                        <button class="boton" onclick="calculateLiftDistribution()">Calculate Lift Distribution</button>
+                    </div>
+                    <div class="input-group">
+                        <label for="airfoil_code">NACA foil</label>
+                        <input type="number" id="airfoil_code" step="0.01">
+                    </div>
+                </div>
+                <div class="inputs">
+                    
+                    <div class="input-group">
+                        <label for="span">Span [m]</label>
+                        <input type="number" id="span" step="0.01" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="chord">Chord [m]</label>
+                        <input type="number" id="chord" step="0.01" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="aoa">AOA [degree]</label>
+                        <input type="number" id="aoa" step="0.1" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="nodes">Nodes</label>
+                        <input type="number" id="nodes" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="vinf">Vinf [m/s]</label>
+                        <input type="number" id="vinf" step="0.1" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="density">Density [kg/m<sup>3</sup>]</label>
+                        <input type="number" id="density" step="0.01" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="twist">Twist (Ω)[°]</label>
+                        <input type="number" id="twist" step="0.1" value="0">
+                    </div>
+                </div>
+            </div>
+            <div class="ailerons">
+                <p>Ailerons</p>
+                <div class="input-group">
+                    <label for="aileron_distance">Distance from tip [m]</label>
+                    <input type="number" id="aileron_distance" step="0.1" value="0">
+                </div>
+                <div class="input-group">
+                    <label for="aileron_length">Length [m]</label>
+                    <input type="number" id="aileron_length" step="0.1" value="0">
+                </div>
+                <div class="input-group">
+                    <label for="aileron_chord">Chord [m]</label>
+                    <input type="number" id="aileron_chord" step="0.1" value="0">
+                </div>
+                <div class="input-group">
+                    <label for="delta_izq">Left (δ)[°]</label>
+                    <input type="number" id="delta_izq" step="0.1" value="0">
+                </div>
+                <div class="input-group">
+                    <label for="delta_der">Rigth (δ)[°]</label>
+                    <input type="number" id="delta_der" step="0.1" value="0">
+                </div>
+            </div>
+            <div class="relevantData">
+                <p>Airfoil: <i id="Airfoil"></i></p>
+                <p>Re: <i id="Reynolds"></i></p>
+                <p>AOA L=0 <i id="AOA_L0"></i></p>
+                <p>AR: <i id="AspectRatio"></i></p>
+                <p>S: <i id="Surface"></i></p>
+                <p>Clα: <i id="clalpha"></i></p>
+                <p>Max Cl/Cd: <i id="MaxClCd"></i></p>
+                <p>ECuerda: <i id="ECuerda"></i></p>
+            </div>
+            
+            
+        </div>
+        
+        <div class="output">
+            <div class="ClAOAChart">
+                <canvas id="ClAlpha_chart" width="400" height="200"></canvas>
+            </div>
+            <div class="LiftChart">
+                <canvas id="graf_sustentacion_1" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="results">
+        <h2>Vista previa del archivo CSV:</h2>
+        <pre id="csvPreview"></pre>
+        <h2 id="results_label">Resultados:</h2>
+        <pre id="results"></pre>
+    </div>
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    <script src="code/phillips.js"></script>
+    <!-- Made by: Iñaki Contreras Robles.
+     Aerospace Engineer.
+     Linkedin: https://www.linkedin.com/in/i%C3%B1aki-contreras-robles-526154244/-->
+</body>
+</html>

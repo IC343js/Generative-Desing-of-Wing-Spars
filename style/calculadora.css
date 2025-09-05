@@ -1,0 +1,293 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #333;
+    background: linear-gradient(rgba(0, 183, 255, 0.5), rgba(0,0,0,1)), url(img/blueprint1.jpeg);
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    /*background-repeat: repeat;*/
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento vertical */
+    height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+
+body::-webkit-scrollbar-track
+{
+    background-color: #000;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0,183,255,0.5); /* Color del thumb (parte que se mueve de la barra de desplazamiento) */
+    border-radius: 10px; /* Radio del borde del thumb */
+    border: 3px solid #000; /* Borde del thumb para darle un espacio alrededor */
+}
+
+header
+{
+    background-color: #000;
+    margin-bottom: 0;
+    padding: 2rem;
+    border-bottom: 1px solid #00d0ff;
+}
+nav ul
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+nav ul li 
+{
+    list-style: none;
+}
+nav ul li a
+{
+    color: #fff;
+    text-decoration: none;
+}
+nav ul li a:hover
+{
+    color: #00d0ff;
+}
+/*------------------------------------------------------------------*/
+.main
+{
+    display: flex;
+    flex-direction: column;
+}
+.gui_panel{
+    display: flex;
+    flex-direction: row;
+}
+
+.inputs
+{
+    color: #fff;
+    background: #000b;
+    border: 1px solid #00d0ff;
+    height: 50vh;
+    width: 30vw;
+    padding: 2rem;
+}
+
+.input-group
+{
+    margin-bottom: 1rem;
+}
+
+input[type="number"]
+{
+    background: #000;
+    color: #fff;
+    width: 5rem;
+}
+
+.ailerons
+{
+    color: #fff;
+    background: #000b;
+    border: 1px solid #00d0ff;
+    height: 50vh;
+    width: 30vw;
+    padding: 2rem;
+}
+
+.botones_calcular
+{
+    width: 30vw;
+    background: #000b;
+    height: 50vh;
+    border: 1px solid #00d0ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+input[type="file"]
+{
+    display: none;
+}
+
+.ailerons p
+{
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    background: #00d0ffa0;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 2rem;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 5px 25px 25px rgba(0,0,0,0.35);
+    border-radius: 0.5rem;
+    width: 100%;
+}
+.ailerons p
+{
+    cursor: auto;
+}
+
+.archivo {
+    margin: 2rem 0;
+    transition: all 0.5s;
+}
+.archivo:hover {
+    transform: scale(1.1);
+}
+.calculo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton
+{
+    width: 100%;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    background: #c0392b;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 2rem;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    width: 60%;
+    transition: all 0.5s;
+    border: 1px solid #c0392b;
+}
+.boton:hover
+{
+    transform: scale(1.1);
+}
+
+label
+{
+    display: inline-block;
+    color: #fff;
+    background: #00d0ff90;
+    text-align: center;
+    padding: 10px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    user-select: none;
+    box-shadow: 5px 25px 25px rgba(0,0,0,0.35);
+    border-radius: 0.5rem;
+}
+
+.relevantData p
+{
+    color: #00d0ff;
+    margin-bottom: 1rem;
+}
+
+.relevantData i
+{
+    color: #fff;
+}
+
+.relevantData
+{
+    height: 50vh;
+    width: 30vw;
+    background: #000b;
+    border: 1px solid #00d0ff;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.output
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.lift_calculated
+{
+    color: #fff;
+    background: #000b;
+    height: 80vh;
+    padding: 2rem;
+    width: 50vw;
+    border: 1px solid #00d0ff;
+}
+
+.ClAOAChart, .LiftChart, .airfoil_canvas
+{
+    border: 1px solid #00d0ff;
+    width: 50vw;
+    height: 25vw;
+    background: #000b;
+}
+
+#ClAlpha_chart
+{
+    width: 50vw;
+}
+#graf_sustentacion_1
+{
+    width: 49vw;
+}
+
+.results
+{
+    display: none;
+}
+
+input[type="file"]
+{
+    display: none;
+}
+
+.archivo label
+{
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    background: #c0392b;
+    text-align: center;
+    padding: 15px 40px;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 5px 25px 25px rgba(0,0,0,0.35);
+    border-radius: 0.5rem;
+}
+
+.archivo label i
+{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.archivo label:active
+{
+    transform: scale(0.9);
+}

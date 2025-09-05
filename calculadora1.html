@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lift Distribution Calculator</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.1/math.min.js"></script>
+    <link rel="icon" href="icono.ico" type="image/x-icon">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Lift Distribution</a></li>
+                <li><a href="modelo3d.html">Wing 3D Model</a></li>
+                <li><a href="cfd.html">Simulations</a></li>
+				<li><a href="simulador.html">CFD Vortex Shedding</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Lift Distribution Calculator</h1>
+        <div class="panel">
+            <div class="inputs">
+                <input type="file" id="fileInput" accept=".csv">
+                <div class="input-group">
+                    <label for="span">Envergadura (m):</label>
+                    <input type="number" id="span" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label for="chord">Cuerda (m):</label>
+                    <input type="number" id="chord" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label for="aoa">Ángulo de ataque nominal (grados):</label>
+                    <input type="number" id="aoa" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label for="stations">Número de estaciones:</label>
+                    <input type="number" id="stations">
+                </div>
+                <div class="input-group">
+                    <label for="speed">Velocidad de vuelo (m/s):</label>
+                    <input type="number" id="speed" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label for="density">Densidad del aire (kg/m<sup>3</sup>):</label>
+                    <input type="number" id="density" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label for="omega_torcimiento">Valor del torcimiento (Ω)[°]</label>
+                    <input type="number" id="omega_torcimiento" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label for="delta_izq">Angulo de despliegue (δ)[°]</label>
+                    <input type="number" id="delta_izq" step="0.1" value="20">
+                </div>
+                <div class="input-group">
+                    <label for="twist">Incluir torcimiento:</label>
+                    <input type="checkbox" id="twist">
+                </div>
+                <div class="input-group">
+                    <label for="ailerons">Incluir alerones:</label>
+                    <input type="checkbox" id="ailerons">
+                </div>
+            </div>
+            <div class="relevantData">
+                <p>Airfoil: <i id="Airfoil"></i></p>
+                <p>Reynolds: <i id="Reynolds"></i></p>
+                <p>Mach: <i id="Mach"></i></p>
+                <p>Aspect Ratio (AR): <i id="AspectRatio"></i></p>
+                <p>S: <i id="Surface"></i></p>
+                <p>Clα: <i id="clalpha"></i></p>
+                <p>Max Cl/Cd: <i id="MaxClCd"></i></p>
+                <p>Relación de Cuerda: <i id="ECuerda"></i></p>
+            </div>
+        </div>
+
+        
+        <button class="boton" onclick="calculateLiftDistribution()">Calcular Distribución de Sustentación</button>
+        <div class="results">
+            <h2>Vista previa del archivo CSV:</h2>
+            <pre id="csvPreview"></pre>
+            <h2 id="results_label">Resultados:</h2>
+            <pre id="results"></pre>
+        </div>
+        <button class="boton" onclick="liftDistributionOnTheWingSpan()">Distribución de la sustentación en la envergadura del ala</button>
+        <canvas id="myChart" width="400" height="200"></canvas>
+        <canvas id="graf_sustentacion_1" width="400" height="200"></canvas>
+    </div>
+    <script src="code/plot.js"></script>
+    
+    <!--Made by Iñaki Contreras Robles - Aerospace Engineer:
+    Linkedin: https://www.linkedin.com/in/i%C3%B1aki-contreras-robles-526154244/-->
+</body>
+</html>

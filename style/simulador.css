@@ -1,0 +1,78 @@
+body
+{
+    margin: 0;
+    background-color: #000;
+}
+
+header
+{
+    background-color: #000;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-bottom: 1px solid #00d0ff;
+    box-shadow: 
+        0 2px 40px rgba(0, 183, 255, 1),
+        0 12px 80px rgba(0, 183, 255, 0.8),
+        0 22px 160px rgba(0, 183, 255, 0.6),
+        0 32px 32px rgba(0, 183, 255, 0.4),
+        0 42px 64px rgba(0, 183, 255, 0.2);
+}
+nav ul
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+nav ul li 
+{
+    list-style: none;
+}
+nav ul li a
+{
+    color: #fff;
+    text-decoration: none;
+}
+nav ul li a:hover
+{
+    color: #00d0ff;
+}
+
+.button {
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    background: #c0392b;
+    text-align: center;
+    padding: 15px 40px;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 5px 25px 25px rgba(0,0,0,0.35);
+    border-radius: 0.5rem;
+}
+
+.selection
+{
+    display: flex;
+    justify-content: center;
+}
+
+.selection input
+{
+    margin: 0 2rem;
+    display: none;
+}
+
+#myCanvas
+{
+    display: flex;
+    margin: 3rem auto;
+    border-bottom: 1px solid #00d0ff;
+    box-shadow: 
+        0 2px 40px rgba(0, 183, 255, 1),
+        0 12px 80px rgba(0, 183, 255, 0.8),
+        0 22px 160px rgba(0, 183, 255, 0.6),
+        0 32px 32px rgba(0, 183, 255, 0.4),
+        0 42px 64px rgba(0, 183, 255, 0.2);
+}

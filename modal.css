@@ -1,0 +1,139 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #333;
+    background: #000;/*linear-gradient(rgba(0, 183, 255, 0.5), rgba(0,0,0,1)), url(img/blueprint1.jpeg);*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    /*background-repeat: repeat;*/
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento vertical */
+    height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+
+body::-webkit-scrollbar-track
+{
+    background-color: #000;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0,183,255,0.5); /* Color del thumb (parte que se mueve de la barra de desplazamiento) */
+    border-radius: 10px; /* Radio del borde del thumb */
+    border: 3px solid #000; /* Borde del thumb para darle un espacio alrededor */
+}
+
+header
+{
+    background-color: #000;
+    margin-bottom: 0;
+    padding: 2rem;
+    border-bottom: 1px solid #00d0ff;
+    width: 100vw;
+    position: fixed;
+}
+nav ul
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+nav ul li 
+{
+    list-style: none;
+}
+nav ul li a
+{
+    color: #fff;
+    text-decoration: none;
+}
+nav ul li a:hover
+{
+    color: #00d0ff;
+}
+/*------------------------------------------------------------------*/
+.main{
+    width: 100vw;
+}
+#root{
+    padding: 2rem;
+}
+#titulo{
+    margin-top: 8rem;
+    color: #fff;
+}
+#seleccionar_modo{
+    color: #fff;
+    margin: 2rem 0;
+    border: 1px solid #00d0ff;
+    padding: 1rem;
+    background: #00d0ff90;
+    border-radius: 1rem;
+    display: none;
+}
+#modos{
+    /*border: 1px solid #00d0ff;*/
+    margin: 2rem 0;
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+}
+#modos button{
+    background-color: #a00b;
+    color: #fff;
+    border: 1px solid #a00;
+    transition: all 0.5s;
+}
+#detener_animacion button{
+    color: #fff;
+    border: 1px solid #00d0ff;
+    padding: 1rem;
+    background: #00d0ff90;
+    border-radius: 1rem;
+    transition: all 0.5s;
+}
+#modos button:hover{
+    box-shadow: 0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #a00,
+                0 0 40px #a00;
+}
+#detener_animacion button:hover{
+    box-shadow: 0 0 20px #00d0ff,
+                0 0 40px #00d0ffa0,
+                0 0 60px #00d0ff97,
+                0 0 100px #00d0ff77;
+}
+#resultado_frecuencia{
+    color: #fff;
+    border: 1px solid transparent;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+#frecuencia_del_modo{
+    border: 1px solid #00d0ff;
+    padding: 1rem;
+    background: #000;
+    box-shadow: 0 0 5px #00d0ff;
+}
+#frecuencia_valor{
+    border: 2px solid #00d0ff;
+    padding: 1rem;
+    color: #000;
+    background: #fff;
+    font-style: bold;
+    font-weight: 700;
+}
+#modal_animation{
+    background-color: #fffffff0;
+    border: 1px solid #00d0ff;
+}
+#beam_properties{
+    display: none;
+}

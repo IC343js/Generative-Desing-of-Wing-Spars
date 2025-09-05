@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolutive Structural Optimization</title>
+    <link rel="stylesheet" href="style/neural.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.1/math.min.js"></script>
+    <script src="https://kit.fontawesome.com/3f10fc879c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="icono.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">DDD</a></li>
+                <li><a href="index.html">Lift Distribution</a></li>
+                <li><a href="foilAnalizer.html">Airfoil Analyzer</a></li>
+                <li><a href="neural.html">Evolutive Optimization</a></li>
+                <li><a href="modal.html">Modal Analysis</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="run_neural">
+        <div class="material_properties">
+            <p>Material Properties</p>
+            <div class="content">
+                <div class="left">
+                    <div class="input-group">
+                        <label for="young_modulus">Ey [GPa]</label>
+                        <input type="number" id="young_modulus" step="0.5" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="rho_material">ρ [Kg/m3]</label>
+                        <input type="number" id="rho_material" step="0.5" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="damping_factor">ζ [1]</label>
+                        <input type="number" id="damping_factor" step="0.5" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="endurance">Sc [MPa]</label>
+                        <input type="number" id="endurance" step="1" required>
+                    </div>
+                </div>
+                <div class="right">
+                    <button id="evolution" onclick="loadSparData()">Evolve</button>
+                </div>
+            </div>
+        </div>
+        <div class="evolutive_parameters">
+            <div class="evolution_left">
+                <div class="input-group">
+                    <label for="mutation">Mutation rate:</label>
+                    <input type="number" id="mutation" step="1" required value="0.2">
+                </div>
+                <div class="input-group">
+                    <label for="mutation_s">Mutation strength:</label>
+                    <input type="number" id="mutation_s" step="1" required value="0.5">
+                </div>
+                <div class="input-group">
+                    <label for="population">Population:</label>
+                    <input type="number" id="population" step="1" required value="50">
+                </div>
+                <div class="input-group">
+                    <label for="eliteCount">Elite Count:</label>
+                    <input type="number" id="eliteCount" step="1" required value="5">
+                </div>
+                <div class="input-group">
+                    <label for="generations">Generations:</label>
+                    <input type="number" id="generations" step="1" required value="200">
+                </div>
+            </div>
+            <div class="evolution_rigth">
+                <div class="evolutive_setup">
+                    <button id="evolution" onclick="">Initialize</button>
+                </div>
+            </div>
+        </div>
+        <div class="cross_section_img">
+            <img src="images/C beam.png" alt="">
+        </div>
+        <div class="neural_output">
+            <div class="beam_dimentions">
+                <p>ho [mm]<span id="ho_output"></span></p>
+                <p>bo [mm]<span id="bo_output"></span></p>
+                <p>hi [mm]<span id="hi_output"></span></p>
+                <p>bi [mm]<span id="bi_output"></span></p>
+            </div>
+            <div class="beam_data">
+                <p>σvon [MPa]<span id="vonmises_output"></span></p>
+                <p>δ [m]<span id="deformation_output"></span></p>
+                <p>W [N]<span id="mass_output"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="force_graphs">
+        <div class="lift_chart">
+            <canvas id="Lift_curve" width="400" height="200"></canvas>
+        </div>
+
+        <div class="sheer_chart">
+            <canvas id="sheer_chart" width="400" height="200"></canvas>
+        </div>
+
+        <div class="moment_chart">
+            <canvas id="moment_chart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <div class="neural_network">
+        <div class="neural">
+            <h3>Neural Network Visualization</h3>
+            <canvas id="network-visualizer" width="500" height="300"></canvas>
+        </div>
+        <div class="data_explanation">
+            <h3>Parameter Information</h3>
+            <div class="parameter_information">
+                <div class="right_inputs">
+                    <p>I1: <span>Vinf [m/s]</span></p>
+                    <p>I2: <span> ρ inf [Kg/m3]</span></p>
+                    <p>I3: <span>AOA [°]</span></p>
+                    <p>I4: <span>b [m]</span></p>
+                </div>
+                <div class="left_inputs">
+                    <p>I5: <span>c [m]</span></p>
+                    <p>I6: <span>ρ spar [Kg/m3]</span></p>
+                    <p>I7: <span>Ey [GPa]</span></p>
+                    <p>I8: <span>ζ [1]</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="code/visualizer.js"></script>
+    <script src="code/neural.js"></script>
+    
+    
+</body>
+</html>

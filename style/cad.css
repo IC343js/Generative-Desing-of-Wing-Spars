@@ -1,0 +1,122 @@
+body
+{
+    margin: 0;
+    background-color: #000;
+}
+
+header
+{
+    background-color: #000;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-bottom: 1px solid #00d0ff;
+    box-shadow: 
+        0 2px 40px rgba(0, 183, 255, 1),
+        0 12px 80px rgba(0, 183, 255, 0.8),
+        0 22px 160px rgba(0, 183, 255, 0.6),
+        0 32px 32px rgba(0, 183, 255, 0.4),
+        0 42px 64px rgba(0, 183, 255, 0.2);
+}
+nav ul
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+nav ul li 
+{
+    list-style: none;
+}
+nav ul li a
+{
+    color: #fff;
+    text-decoration: none;
+}
+nav ul li a:hover
+{
+    color: #00d0ff;
+}
+
+main
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+#information
+{
+    color: #00d0ff;
+    border: 1px solid #00d0ff;
+    width: 30vw;
+    padding: 1rem;
+    box-shadow: 
+        0 2px 40px rgba(0, 183, 255, 1),
+        0 12px 80px rgba(0, 183, 255, 0.8),
+        0 22px 160px rgba(0, 183, 255, 0.6),
+        0 32px 32px rgba(0, 183, 255, 0.4),
+        0 42px 64px rgba(0, 183, 255, 0.2);
+}
+
+#information_panels
+{
+    display: flex;
+}
+#information_right, #information_left
+{
+    width: 50%;
+}
+
+#information h2, #information span
+{
+    color: #fff;
+}
+
+
+#modelo
+{
+    width: 60vw;
+    height: 70vh;
+    margin: 0 auto;
+    border: 1px solid #00d0ff;
+    box-shadow: 
+        0 2px 40px rgba(0, 183, 255, 1),
+        0 12px 80px rgba(0, 183, 255, 0.8),
+        0 22px 160px rgba(0, 183, 255, 0.6),
+        0 32px 32px rgba(0, 183, 255, 0.4),
+        0 42px 64px rgba(0, 183, 255, 0.2);
+    background: linear-gradient(rgba(0,183,255,0.2), rgba(0,183,255,0.5)), url(../ala.PNG);
+    background-size: cover;
+}
+
+#airfoil
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+#airfoil p
+{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+#airfoil img
+{
+    width: 30vw;
+    border-radius: 2rem;
+    transition: 0.5s all;
+}
+
+#airfoil img:hover
+{
+    box-shadow: 
+        0 2px 40px rgba(0, 183, 255, 1),
+        0 12px 80px rgba(0, 183, 255, 0.8),
+        0 22px 160px rgba(0, 183, 255, 0.6),
+        0 32px 32px rgba(0, 183, 255, 0.4),
+        0 42px 64px rgba(0, 183, 255, 0.2);
+}

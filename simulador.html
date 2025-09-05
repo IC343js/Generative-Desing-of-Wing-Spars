@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Euler Fluid</title>
+		<link rel="stylesheet" href="style/simulador.css">
+		<link rel="icon" href="icono.ico" type="image/x-icon">
+	</head>
+	
+<body>
+	<header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Lift Distribution</a></li>
+                <li><a href="modelo3d.html">Wing 3D Model</a></li>
+                <li><a href="cfd.html">Simulations</a></li>
+				<li><a href="simulador.html">CFD Vortex Shedding</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+	<div class="selection">
+		<button class="button" onclick="setupScene(1)">Reset</button>
+	
+		<input type = "checkbox" id = "streamButton" onclick = "scene.showStreamlines = !scene.showStreamlines">
+		<input type = "checkbox" id = "velocityButton" onclick = "scene.showVelocities = !scene.showVelocities">
+		<input type = "checkbox" name = "field" id = "pressureButton" onclick = "scene.showPressure = !scene.showPressure;"> 
+		<input type = "checkbox" name = "field" id = "smokeButton" onclick = "scene.showSmoke = !scene.showSmoke;" checked>
+		<input type = "checkbox" id = "overrelaxButton" onclick = "scene.overRelaxation = scene.overRelaxation == 1.0 ? 1.9 : 1.0" checked>
+		<br>
+	</div>
+	
+	<canvas id="myCanvas"></canvas>
+	
+    <script src="code/simulador.js"></script>
+</body>
+</html>

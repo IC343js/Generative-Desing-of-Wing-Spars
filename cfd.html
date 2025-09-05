@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airfoil Simulation</title>
+    <link rel="stylesheet" href="style/cfd.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.1/math.min.js"></script>
+    <script src="https://kit.fontawesome.com/3f10fc879c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="icono.ico" type="image/x-icon">
+</head>
+<body>
+
+    <div class="video-container">
+        <video autoplay muted loop class="video-background">
+            <source src="video.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Lift Distribution</a></li>
+                <li><a href="modelo3d.html">Wing 3D Model</a></li>
+                <li><a href="cfd.html">Simulations</a></li>
+				<li><a href="simulador.html">CFD Vortex Shedding</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        
+        <h1>Simulations Results</h1>
+
+        <div class="cfd_simulations">
+            <p>CFD simulations and renders</p>
+
+            <div class="slider">
+                <div class="slides">
+                    <img src="images/envolvente de vuelo.jpeg" alt="Flight Envelope" class="slide">
+                    <img src="images/cfd.PNG" alt="Velocity profile" class="slide">
+                    <img src="images/vortex.PNG" alt="Vortex Shedding" class="slide">
+                    <img src="images/xflr5.PNG" alt="Xflr5" class="slide">
+                    <img src="images/render2.png" alt="Ribs and spars" class="slide">
+                    <img src="images/render3.png" alt="Ribs and spars" class="slide">
+                    <img src="images/render4.png" alt="Ribs and spars" class="slide">
+                </div>
+                <button class="prev" onclick="prevSlide()">&#10094</button>
+                <button class="next" onclick="nextSlide()">&#10095</button>
+            </div>
+        </div>
+        
+        <div class="modal_simulations">
+            <p>Modal and Static Stress Simulations</p>
+
+            <div class="slider_2">
+                <div class="slides_2">
+                    <img src="images/mesh.PNG" alt="Mesh of the wing" class="slide_2">
+                    <img src="images/estatico1.PNG" alt="Von Misses" class="slide_2">
+                    <img src="images/estatico2.PNG" alt="Stress on wing" class="slide_2">
+                    <img src="images/modal.PNG" alt="modal analysis" class="slide_2">
+                </div>
+                <button class="prev" onclick="prevSlide_2()">&#10094</button>
+                <button class="next" onclick="nextSlide_2()">&#10095</button>
+            </div>
+        </div>
+    
+        <div class="archivo">
+            <label for="fileInput"><i class="fa-solid fa-upload"></i> Xflr5 File:</label>
+            <input type="file" id="fileInput" />
+        </div>
+    
+        <div class="graficas">
+            <div class="CLvsCD">
+                <canvas id="clcd" width="400" height="200"></canvas>
+            </div>
+            <div class="CLvsAOA">
+                <canvas id="claoa" width="400" height="200"></canvas>
+            </div>
+            <div class="CmvsAOA">
+                <canvas id="cmaoa" width="400" height="200"></canvas>
+            </div>
+            <div class="CLCDvsAOA">
+                <canvas id="clcdaoa" width="400" height="200"></canvas>
+            </div>
+            <div class="cdi">
+                <canvas id="cdi" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <script type="module" src="code/cfd.js"></script>
+    <script src="code/slider.js"></script>
+</body>
+</html>

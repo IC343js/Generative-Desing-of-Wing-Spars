@@ -1,0 +1,264 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #333;
+    background: #555;/*linear-gradient(rgba(0, 183, 255, 0.5), rgba(0,0,0,1)), url(img/blueprint1.jpeg);*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    /*background-repeat: repeat;*/
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento vertical */
+    height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+
+body::-webkit-scrollbar-track
+{
+    background-color: #000;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0,183,255,0.5); /* Color del thumb (parte que se mueve de la barra de desplazamiento) */
+    border-radius: 10px; /* Radio del borde del thumb */
+    border: 3px solid #000; /* Borde del thumb para darle un espacio alrededor */
+}
+
+header
+{
+    background-color: #000;
+    margin-bottom: 0;
+    padding: 2rem;
+    border-bottom: 1px solid #00d0ff;
+}
+nav ul
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+nav ul li 
+{
+    list-style: none;
+}
+nav ul li a
+{
+    color: #fff;
+    text-decoration: none;
+}
+nav ul li a:hover
+{
+    color: #00d0ff;
+}
+/*------------------------------------------------------------------*/
+.spar_data_inputs
+{
+    color: #fff;
+    background: #000b;
+    border: 1px solid #00d0ff;
+    height: 50vh;
+    width: 30vw;
+    padding: 2rem;
+}
+
+.input-group
+{
+    margin-bottom: 1rem;
+}
+
+input[type="number"]
+{
+    background: #000;
+    color: #fff;
+    width: 5rem;
+}
+
+label
+{
+    display: inline-block;
+    color: #fff;
+    background: #00d0ff90;
+    text-align: center;
+    padding: 10px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    user-select: none;
+    box-shadow: 5px 25px 25px rgba(0,0,0,0.35);
+    border-radius: 0.5rem;
+}
+
+.spar_data{
+    display: flex;
+    flex-direction: column;
+    height: 55vh;
+    border: 1px solid #00d0ff;
+}
+
+.spar_data_display{
+    display: flex;
+    flex-direction: row;
+    height: 45vh;
+    width: 35vw;
+    border: 1px solid #00d0ff;
+}
+
+.spar_data_title{
+    display: flex;
+    flex-direction: row;
+    width: 35vw;
+    height: 10vh;
+}
+
+.spar_data_title p{
+    font-size: 1.5rem;
+    margin: 0;
+    color: #fff;
+    background: #000;
+    padding: 1rem;
+    width: 25vw;
+    border: 1px solid #00d0ff;
+}
+
+#calculate_spar_data{
+    width: 10vw;
+    background: #a00;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.cross_section_img img{
+    height: 45vh;
+    width: 20vw;
+}
+
+.spar_data_inputs{
+    width: 15vw;
+    height: 45vh;
+}
+
+.lift_chart, .sheer_chart{
+    width: 32vw;
+    height: 55vh;
+}
+
+#Lift_curve_spar, #sheer_curve_spar{
+    width: 32vw;
+    border: 1px solid #00d0ff;
+}
+
+.upper{
+    display: flex;
+    flex-direction: row;
+}
+
+/*------------------------------------------*/
+
+.lower{
+    height: 50vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.spar_calculations{
+    background-color: #000;
+    width: 35vw;
+    border: 1px solid #00d0ff;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.spar_calculations p {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.spar_calculations p span.label {
+    background-color: #00d0ff80;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid #00d0ff;
+    border-radius: 5px;
+    width: 10vw;
+    text-align: center;
+}
+
+.spar_calculations p span.value {
+    background-color: black;
+    color: #fff;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: 1px solid #00d0ff;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 20vw;
+}
+/*--------------------------------------------------------------------
+---------------------------------------------------------------------
+-----------------------------------------------------------------------*/
+.recovered_wing_data{
+    background-color: #000;
+    width: 32vw;
+    border: 1px solid #00d0ff;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.recovered_wing_data p {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.recovered_wing_data p span.label {
+    background-color: #00d0ff80;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid #00d0ff;
+    border-radius: 5px;
+    width: 10vw;
+    text-align: center;
+}
+
+.recovered_wing_data p span.value {
+    background-color: black;
+    color: #fff;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: 1px solid #00d0ff;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 20vw;
+}
+
+#wing_information{
+    color: #fff;
+    margin: auto;
+    font-size: 1.5rem;
+}
+
+.moment_chart{
+    width: 32vw;
+    border: 1px solid #00d0ff;
+}

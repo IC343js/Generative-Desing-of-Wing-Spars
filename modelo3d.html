@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD</title>
+    <link rel="stylesheet" href="style/cad.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.1/math.min.js"></script>
+    <link rel="icon" href="icono.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Lift Distribution</a></li>
+                <li><a href="modelo3d.html">Wing 3D Model</a></li>
+                <li><a href="cfd.html">Simulations</a></li>
+				<li><a href="simulador.html">CFD Vortex Shedding</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="information">
+            <h2>Wing Information</h2>
+            
+            <div id="information_panels">
+                <div id="information_left">
+                
+                    <p>Airfoil: <span>NACA 23012</span></p>
+                    <p>Material: <span>Aluminum 7075</span></p>
+                    <p>AOA: <span>3 [°]</span></p>
+                    <p>Dihedral: <span>0 [°]</span></p>
+                    <p>Vinf: <span>800 [Km/h]</span></p>
+                </div>
+                
+                <div id="information_right">
+                    <p>Span: <span>26 [m]</span></p>
+                    <p>Chord: <span>3.7 [m]</span></p>
+                    <p>CLα=0: <span>0.101</span></p>
+                    <p>CL/CD MAX: <span>32.27273 | α = 3 [°]</span></p>
+                    <p>CLα=3[°]: <span>0.355</span></p>
+                    <p>CDα=3[°]: <span>0.011</span></p>
+                </div>
+            </div>
+            <div id="airfoil">
+                <img src="naca 23012.PNG" alt="NACA 23012">
+                <p><i>NACA 23012.</i></p>
+            </div>
+            
+        </div>
+        <div id="container3D">
+            <model-viewer id="modelo" src="wing.glb" autoplay camera-controls auto-rotate></model-viewer>
+            
+        </div>
+    </main>
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    <!--<script type="module" src="CAD.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolutive Structural Optimization</title>
+    <link rel="stylesheet" href="style/eso.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.1/math.min.js"></script>
+    <script src="https://kit.fontawesome.com/3f10fc879c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="icono.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">DDD</a></li>
+                <li><a href="index.html">Lift Distribution</a></li>
+                <li><a href="foilAnalizer.html">Airfoil Analyzer</a></li>
+                <li><a href="eso.html">Evolutive Optimization</a></li>
+                <li><a href="modal.html">Modal Analysis</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="upper">
+        <div class="spar_data">
+            <div class="spar_data_title">
+                <p>Cross-Section Information</p>
+                <button id="calculate_spar_data" onclick="engineering_data()">Calculate</button>
+            </div>
+            <div class="spar_data_display">
+                <div class="cross_section_img">
+                    <img src="images/C beam.png" alt="">
+                </div>
+
+                <div class="spar_data_inputs">
+                    <div class="input-group">
+                        <label for="ho">ho [mm]</label>
+                        <input type="number" id="ho" step="0.01" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="bo">bo [mm]</label>
+                        <input type="number" id="bo" step="0.01" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="hi">hi [mm]</label>
+                        <input type="number" id="hi" step="0.01" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="bi">bi [mm]</label>
+                        <input type="number" id="bi" step="0.01" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="density_material">ρ [kg/m3]</label>
+                        <input type="number" id="density_material" step="0.01" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="Ey">Ey [GPa]</label>
+                        <input type="number" id="Ey" step="0.01" value="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lift_chart">
+            <canvas id="Lift_curve_spar" width="400" height="200"></canvas>
+        </div>
+
+        <div class="sheer_chart">
+            <canvas id="sheer_curve_spar" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <div class="lower">
+        <div class="spar_calculations">
+            <p><span class="label">I [mm4]:</span> <span id="momento_de_inercia" class="value"></span></p>
+            <p><span class="label">Q [mm3]:</span> <span id="momento_de_area" class="value"></span></p>
+            <p><span class="label">τmax [Pa]:</span> <span id="max_sheer_stress" class="value"></span></p>
+            <p><span class="label">σmax [Pa]:</span> <span id="max_stress" class="value"></span></p>
+            <p><span class="label">σvon [Pa]:</span> <span id="von_mises" class="value"></span></p>
+        </div>
+        <div class="recovered_wing_data">
+            <p id="wing_information">Spar Information</p>
+            <p><span class="label">b/2 [m]:</span> <span id="mid_span" class="value"></span></p>
+            <p><span class="label">c [m]:</span> <span id="chord" class="value"></span></p>
+            <p><span class="label">aoa [°]:</span> <span id="aoa" class="value"></span></p>
+            <p><span class="label">Vinf [m/s]:</span> <span id="vinf" class="value"></span></p>
+            <p><span class="label">W [N]:</span> <span id="weight" class="value"></span></p>
+            <p><span class="label">V [mm3]:</span> <span id="volume" class="value"></span></p>
+        </div>
+        <div class="moment_chart">
+            <canvas id="moment_curve_spar" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <script src="mechanical.js"></script>
+</body>
+</html>

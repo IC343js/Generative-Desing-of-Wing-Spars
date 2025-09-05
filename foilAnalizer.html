@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Airfoil Performance Analyzer</title>
+    <link rel="stylesheet" href="style/foils.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.1/math.min.js"></script>
+    <script src="https://kit.fontawesome.com/3f10fc879c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="icono.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">DDD</a></li>
+                <li><a href="index.html">Lift Distribution</a></li>
+                <li><a href="foilAnalizer.html">Airfoil Analyzer</a></li>
+                <li><a href="eso.html">Evolutive Optimization</a></li>
+                <li><a href="modal.html">Modal Analysis</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h1>Airfoil Performance Analyzer</h1>
+        <div class="info">
+            <p>Please upload the exported results of Xfoil Direct Analysis from XFLR5 in .txt format <i class="fa-solid fa-exclamation"></i> <i class="fa-solid fa-exclamation"></i> <i class="fa-solid fa-exclamation"></i></p>
+        </div>
+        
+        <div class="archivo">
+            <label for="fileInput"><i class="fa-solid fa-upload"></i> Xflr5 File:</label>
+            <input type="file" id="fileInput" accept=".txt">
+        </div>
+        <div id="results">
+            <div class="panel1">
+                <p>CL max: <i id="clmax"></i> at <i id="aoamaxcl"></i></p>
+                <p>AOA at Stall: <i id="aoastall"></i></p>
+                <p>CL|AOA = 0°: <i id="claoazero"></i></p>
+                <p>CM max: <i id="cmmax"></i></p>
+            </div>
+            <div class="panel2">
+                <p>CM min: <i id="cmmin"></i></p>
+                <p>CL/CD max: <i id="clcdmax"></i></p>
+                <p>CL/CD min: <i id="clcdmin"></i></p>
+            </div>
+        </div>
+        <div class="selection">
+            <button class="button" onclick="setupScene(1)">Reset</button>
+        
+            <input type = "checkbox" id = "streamButton" onclick = "scene.showStreamlines = !scene.showStreamlines">
+            <input type = "checkbox" id = "velocityButton" onclick = "scene.showVelocities = !scene.showVelocities">
+            <input type = "checkbox" name = "field" id = "pressureButton" onclick = "scene.showPressure = !scene.showPressure;"> 
+            <input type = "checkbox" name = "field" id = "smokeButton" onclick = "scene.showSmoke = !scene.showSmoke;" checked>
+            <input type = "checkbox" id = "overrelaxButton" onclick = "scene.overRelaxation = scene.overRelaxation == 1.0 ? 1.9 : 1.0" checked>
+            <br>
+        </div>
+        
+        <canvas id="myCanvas"></canvas>
+        
+        <script src="code/simulador.js"></script>
+    </div>
+    
+
+    <!--Made by Iñaki Contreras Robles - Aerospace Engineer-->
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const text = e.target.result;
+                const results = analyzeAirfoil(text);
+                displayResults(results);
+            };
+
+            reader.readAsText(file);
+        });
+
+        function analyzeAirfoil(text) {
+            const lines = text.split('\n');
+            const data = lines
+                .filter(line => /^\s*-?\d+\.\d+/.test(line))
+                .map(line => line.trim().split(/\s+/).map(val => parseFloat(val)));
+
+            console.log('Parsed Data:', data); 
+            // CLmax
+            const clmax = Math.max(...data.map(row => row[1]));
+            const clmaxAOA = data.find(row => row[1] === clmax)[0];
+
+            // AOAstall (simplistic approach)
+            const stallAOA = data.reduce((prev, current) => 
+                Math.abs(current[1] - clmax) < Math.abs(prev[1] - clmax) ? current : prev
+            )[0];
+
+            // CL at 0°
+            const cl0 = interpolateCLAtZero(data);
+
+            // CM calculations - with more robust handling
+            const cmValues = data
+                .map(row => row[4])  // Extract CM values
+                .filter(cm => !isNaN(cm));  // Remove any NaN values
+
+            const cmmax = cmValues.length > 0 ? Math.max(...cmValues) : 0;
+            const cmmin = cmValues.length > 0 ? Math.min(...cmValues) : 0;
+
+            // L/D calculations with valid CL and CD
+            const ldRatios = data
+                .filter(row => row[2] > 0) // Ensure CD is non-zero
+                .map(row => row[1] / row[2]);
+            const ldmax = Math.max(...ldRatios);
+            const ldmin = Math.min(...ldRatios);
+
+            return {
+                CLmax: clmax.toFixed(4),
+                CLmaxAOA: clmaxAOA.toFixed(2),
+                AOAstall: stallAOA.toFixed(2),
+                CL0: cl0.toFixed(4),
+                CMmax: cmmax.toFixed(4),
+                CMmin: cmmin.toFixed(4),
+                LDmax: ldmax.toFixed(4),
+                LDmin: ldmin.toFixed(4)
+            };
+        }
+
+        function interpolateCLAtZero(data) {
+            // Encuentra puntos cercanos a 0°
+            const zeroData = data.filter(row => Math.abs(row[0]) <= 1);
+            
+            // Si hay suficientes puntos, interpola
+            if (zeroData.length >= 2) {
+                const nearZeroPoints = zeroData.sort((a, b) => Math.abs(a[0]) - Math.abs(b[0]));
+                const point1 = nearZeroPoints[0];
+                const point2 = nearZeroPoints[1];
+                
+                // Interpolación lineal
+                const cl0 = point1[1] + (point2[1] - point1[1]) * 
+                    (0 - point1[0]) / (point2[0] - point1[0]);
+                
+                return cl0;
+            }
+            
+            // Si no hay suficientes puntos, usa el primer punto cercano
+            return zeroData.length > 0 ? zeroData[0][1] : 0;
+        }
+
+        function displayResults(results) {
+            /*const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h2>Airfoil Performance Results</h2>
+                <p><strong>CLmax:</strong> ${results.CLmax} (at AOA ${results.CLmaxAOA}°)</p>
+                <p><strong>AOA at Stall:</strong> ${results.AOAstall}°</p>
+                <p><strong>CL at 0°:</strong> ${results.CL0}</p>
+                <p><strong>CMmax:</strong> ${results.CMmax}</p>
+                <p><strong>CMmin:</strong> ${results.CMmin}</p>
+                <p><strong>Maximum L/D:</strong> ${results.LDmax}</p>
+                <p><strong>Minimum L/D:</strong> ${results.LDmin}</p>
+            `;*/
+            document.getElementById('clmax').textContent = `${results.CLmax}`;
+            document.getElementById('aoamaxcl').textContent = `${results.CLmaxAOA}°`;
+            document.getElementById('aoastall').textContent = `${results.AOAstall}°`;
+            document.getElementById('claoazero').textContent = `${results.CL0}`;
+            document.getElementById('cmmax').textContent = `${results.CMmax}`;
+            document.getElementById('cmmin').textContent = `${results.CMmin}`;
+            document.getElementById('clcdmax').textContent = `${results.LDmax}`;
+            document.getElementById('clcdmin').textContent = `${results.LDmin}`;
+        }
+    </script>
+</body>
+</html>
